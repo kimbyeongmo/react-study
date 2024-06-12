@@ -1,11 +1,9 @@
 
 import './App.css';
 import React from 'react';
-import Hello from './components/Hello';
-import Bye from './components/Bye';
-import Greet from './components/Greet';
+import Expenseltem from './components/expenses/Expenseltem';
 
-function App() {
+const App=() => {
 
   // jsx 문법
   // const $h2 = React.createElement('h2', null, '방가방가햄토리');
@@ -22,10 +20,9 @@ function App() {
 
   return (
     <>
-      <Bye />
-      <Hello />
-      <Bye />
-      <Greet />
+      <Expenseltem />
+      <Expenseltem />
+      <Expenseltem />
     </>
   );
 }
