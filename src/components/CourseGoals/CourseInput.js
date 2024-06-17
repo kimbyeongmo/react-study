@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import './CourseInput.css';
+import styles from './CourseInput.module.css';
 import Button from '../UI/Button';
 
 const CourseInput = ({ onAdd }) => {
+
+  // console.log('s: ', styles);
+
+  const { invalid, "form-control": formControl } = styles;
 
   // 목표 인풋에 입력한 값
   const [enteredText, setEnteredText] = useState('');
 
   // 입력값 검증을 통과했는지 여부를 상태관리
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(true);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -42,17 +46,12 @@ const CourseInput = ({ onAdd }) => {
 
   return (
     <form onSubmit={formSubmitHandler}>
-      <div className="form-control">
+      <div className={`${formControl} ${!isValid && invalid}`}>
         <label>나의 목표</label>
         <input
           type="text"
           onChange={goalChangeHandler}
           value={enteredText}
-          style={{
-            backgroundColor: isValid ? 'transparent' : 'salmon',
-            borderColor: isValid ? 'black' : 'red',
-
-          }}
         />
       </div>
       <Button type="submit">목표 추가하기</Button>
