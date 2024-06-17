@@ -1,9 +1,9 @@
 import React from 'react'
 import './Card.css';
 
-const Card = ({className, children}) => {
+const Card = ({ className, children }) => {
 
-  const cn = 'card '+ className;
+  const cn = 'card ' + className;
 
   return (
     <div className={cn}>
