@@ -49,11 +49,14 @@ const TodoTemplate = () => {
 
     // 한 줄 요약 코드
     // setTodoList(todoList.map(todo=>todo.id===id ? {...todo, done : !todo.done} : todo));
-  }
+  };
+
+  // 남은 할 일 개수 카운트
+  const countRestToDo=todoList.filter(todo=>!todo.done).length;
 
   return (
     <div className='TodoTemplate'>
-      <TodoHeader />
+      <TodoHeader count={countRestToDo}/>
       <TodoMain todos={todoList} onRemove={removeTodo} onCheck={checkTodo}/>
       <TodoInput onAdd={addTodo} />
     </div>
