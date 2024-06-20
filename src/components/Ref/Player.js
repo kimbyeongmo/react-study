@@ -3,13 +3,13 @@ import Input from "./Input";
 
 const Player = () => {
 
-  const $nameInputRef= useRef();
+  const $nameInputRef = useRef();
+  
   const [enteredName, setEnteredName] = useState('anonymous');
 
-  const nameChangeHandler = e=>{
+  const nameChangeHandler = e => {
     setEnteredName($nameInputRef.current.value);
-
-    $nameInputRef.current.value='';
+    $nameInputRef.current.value = '';
   };
 
   return (
