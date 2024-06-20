@@ -38,10 +38,23 @@ const TodoTemplate = () => {
     setTodoList(todoList.filter(todo=>todo.id!==id));
   };
 
+  const checkTodo = id =>{
+    const copyTodoList = [...todoList];
+
+    const foundTodo=copyTodoList.find(todo=>todo.id===id);
+    foundTodo.done=!foundTodo.done;
+    // console.log('founded:',foundTodo);
+
+    setTodoList(copyTodoList);
+
+    // 한 줄 요약 코드
+    // setTodoList(todoList.map(todo=>todo.id===id ? {...todo, done : !todo.done} : todo));
+  }
+
   return (
     <div className='TodoTemplate'>
       <TodoHeader />
-      <TodoMain todos={todoList} onRemove={removeTodo}/>
+      <TodoMain todos={todoList} onRemove={removeTodo} onCheck={checkTodo}/>
       <TodoInput onAdd={addTodo} />
     </div>
   );
