@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./CartModal.module.scss";
+import React from 'react';
+import styles from './CartModal.module.scss';
 
 const ModalOverlay = ({ children }) => {
   return (
@@ -9,10 +9,10 @@ const ModalOverlay = ({ children }) => {
   );
 };
 
-const CartModal = ({ children }) => {
+const CartModal = ({ children, onClose }) => {
   return (
     <>
-      <div className={styles.backdrop} />
+      <div className={styles.backdrop} onClick={onClose} />
       <ModalOverlay>
         {children}
       </ModalOverlay>
