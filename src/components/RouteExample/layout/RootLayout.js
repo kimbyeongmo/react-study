@@ -6,7 +6,7 @@ const RootLayout = () => {
   return (
     <>
       <MainNavigation />
-      {/* RootLayout의 children들이 Outlet으로 렌더링 됨 */}
+      {/* RootLayout의 children들이 Outlet으로 렌더링됨 */}
       <main>
         <Outlet />
       </main>
