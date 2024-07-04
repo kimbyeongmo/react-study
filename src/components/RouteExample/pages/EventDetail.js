@@ -1,10 +1,13 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useRouteLoaderData } from 'react-router-dom';
 import EventItem from '../components/EventItem';
 
 const EventDetail = () => {
 
-  const ev = useLoaderData();
+  // 사용 범위가 본인 컴포넌트와 그 하위 컴포넌트(children은 하위가 아님)
+  // const ev = useLoaderData();
+
+  const ev = useRouteLoaderData('event-detail'); // 부모의 loader를 불러오는 훅
 
   return <EventItem event={ev} />;
 };
