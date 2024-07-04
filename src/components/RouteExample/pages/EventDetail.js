@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData, useRouteLoaderData } from 'react-router-dom';
+import { useRouteLoaderData } from 'react-router-dom';
 import EventItem from '../components/EventItem';
 
 const EventDetail = () => {
