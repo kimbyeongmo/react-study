@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import EventList from '../components/EventList';
-import { useLoaderData, json } from 'react-router-dom';
 import EventSkeleton from '../components/EventSkeleton';
+
 // npm install loadsh
 import { debounce, throttle } from 'lodash';
 
@@ -18,21 +18,25 @@ const Events = () => {
   // 로딩 상태 체크
   const [loading, setLoading] = useState(false);
 
-  // 현재 페이지 번호
+  // 현재 페이지 번호 
   const [currentPage, setCurrentPage] = useState(1);
 
   // 서버로 목록 조회 요청보내기
   const loadEvents = async() => {
 
-    console.log('start loading..');
+    console.log('start loading...');
     setLoading(true);
 
     const response = await fetch(`http://localhost:8282/events/page/${currentPage}?sort=date`);
-    const events = await response.json();
+    const loadedEvents = await response.json();
 
-    setEvents(events);
+    const updatedEvents = [...events, ...loadedEvents ];
+    setEvents(updatedEvents);
     setLoading(false);
-    console.log('end loading...');
+    
+    // 로딩이 끝ㄴ면 페이지번호를 1 늘려 놓는다.
+    setCurrentPage(prevPage => prevPage +1);
+    console.log('end loading!!');
   };
 
   // 초기 이벤트 1페이지 목록 가져오기
@@ -41,25 +45,24 @@ const Events = () => {
   }, []);
 
   // 스크롤 핸들러
-  const scrollHandler = throttle(()=>{
-    if(loading || 
+  const scrollHandler = throttle(() => {
+    if (loading || 
       window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight
-    ){
+    ) {
       return;
     }
     loadEvents();
-  },2000);
+  }, 2000);
 
   // 스크롤 이벤트 바인딩
-  useEffect(()=>{
-
+  useEffect(() => {
     window.addEventListener('scroll', scrollHandler);
 
     return () => {
       window.removeEventListener('scroll', scrollHandler);
-      scrollHandler.cancel(); // 스크롤 취소
+      scrollHandler.cancel(); // 스로틀 취소
     }
-  },[currentPage, loading]);
+  }, [currentPage, loading]);
 
   return (
     <>
